@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+\.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #daa520;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.cell {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.apresentacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.apresentacao img {
+  max-width: 400px;
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #daa520;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.formulario {
+  padding: 20px;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.formulario button {
+  background: #daa520;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.historico {
+  padding: 20px;
+}
+
+.historico ul {
+  list-style: none;
+}
+
+.footer {
+  text-align: center;
+  background: #daa520;
+  color: #fff;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .apresentacao {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: #daa520;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+
+  .cell {
+    display: block;
+  }
+}
