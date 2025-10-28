@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Login</title>
+  <link rel="stylesheet" href="style-front.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <p class="error" id="errorMsg"></p>
+      </form>
+    </div>
+  </div>
+  <script src="script-front"></script>
+</body>
+</html>
