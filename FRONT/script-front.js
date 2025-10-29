@@ -21,7 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
       errorMsg.style.color = "green";
       errorMsg.textContent = "✅ Login realizado com sucesso!";
       setTimeout(() => {
-        window.location.href = "/pagina/index.html";
+        window.location.href = "/FRONT/index.html";
       }, 1000);
     } else {
       errorMsg.style.color = "red";
