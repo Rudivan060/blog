@@ -5,17 +5,38 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const path = require('path');
-app.use(express.static(path.join(__dirname, '..', 'FRONT')));
 
-app.use(cors({ credentials: true }));
+// Configuração do CORS
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type']
+}));
+
+// Configuração para processar JSON
 app.use(express.json());
 
+// Configuração da sessão antes das rotas
 app.use(session({
     secret: "segredo-super-seguro",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 } // 1 hora
+    cookie: { 
+        maxAge: 1000 * 60 * 60,
+        secure: false,
+        httpOnly: true
+    }
 }));
+
+// Configurar diretório de arquivos estáticos
+const staticPath = path.join(__dirname, '..', 'pagina');
+app.use(express.static(staticPath));
+
+// Log para debug
+console.log('Serving static files from:', staticPath);
+
+// Sessão já configurada acima
 
 const checkAuth = (req, res, next) => {
     if (!req.session.user) {
@@ -38,22 +59,29 @@ let usuarios = [
 let proximoID = 3;
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'FRONT', 'index.html'));
+    res.redirect('/FRONT/index.html');
 });
 
-app.post("/login", (req, res) => {
-    const { text } = req.body;
-    if (!text) return res.status(400).json({ erro: 'Campo login (text) é obrigatório' });
+app.post("/api/login", (req, res) => {
+    console.log('Requisição recebida:', req.body); // Log para debug
+    const { text, senha } = req.body;
+    if (!text || !senha) {
+        console.log('Dados inválidos:', { text, senha }); // Log para debug
+        return res.status(400).json({ erro: 'Login e senha são obrigatórios' });
+    }
 
-    const user = usuarios.find(u => u.text === text);
+    const user = usuarios.find(u => u.text === text && u.senha === senha);
+    console.log('Usuário encontrado:', user ? 'sim' : 'não'); // Log para debug
 
     if (!user) {
-        return res.status(401).json({ erro: "Usuário não cadastrado" });
+        return res.status(401).json({ erro: "Usuário ou senha incorretos" });
     }
 
     const { senha: _, ...userSemSenha } = user;
     user.sessionId = req.sessionID;
     req.session.user = userSemSenha;
+    
+    console.log('Login bem-sucedido para:', userSemSenha); // Log para debug
     res.json({ 
         mensagem: "Login realizado com sucesso",
         usuario: userSemSenha
