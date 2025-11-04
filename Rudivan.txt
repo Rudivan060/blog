@@ -1,0 +1,29 @@
+- Qual foi sua principal contribuição no trabalho?
+
+Fazer alterçoes no back pra adaptar a esse trabalho
+
+- Quais partes do projeto você desenvolveu?
+
+Desenvolvi os scripts que permitem a integração entre as telas do front e o back
+
+- Qual foi o trecho mais complicado do código? Explique o motivo.
+
+Foi conseguir ajustar as rotas para o front funcionar devidamente 
+
+- Qual foi sua maior dificuldade técnica e como resolveu?
+
+concerteza foi em organizar as rotas, pra resolver pedi ajuda ao chatGPT para me a encontrar os meus erros e poder corrigi-los 
+
+- Você utilizou IA (como ChatGPT, Copilot, etc.) em alguma parte? Se sim,
+explique exatamente como (ex: para revisar código, gerar exemplos, esclarecer
+dúvidas, etc.).
+
+Usei o chatGPT para me auxiliar nas rotas e em aguns momentos para me ajudar a entander como estava funcionando os .js para melhora-los
+
+- O que você aprendeu de novo com este trabalho?
+
+Que com certeza as organizações de rotas são fundamentais para o funcionamento do projeto
+
+- Se tivesse mais tempo, o que melhoraria no projeto?
+
+Colocaria um modo para poder responder os comentários 
