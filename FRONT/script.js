@@ -4,20 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginLink = document.getElementById("loginLink");
   const logoutLink = document.getElementById("logoutLink");
 
-  // Exibe o nome do usuário se estiver logado
   if (usuario) {
     usuarioLogadoSpan.textContent = `👋 Olá, ${usuario.username}`;
     loginLink.style.display = "none";
     logoutLink.style.display = "inline";
   }
 
-  // Logout
   logoutLink.addEventListener("click", () => {
     localStorage.removeItem("usuarioLogado");
     window.location.href = "login.html";
   });
 
-  // --- Mural ---
   const form = document.getElementById("contactForm");
   const mensagensSalvas = document.getElementById("mensagensSalvas");
 
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      // 🔒 Se o usuário não estiver logado, redireciona para login.html
       const usuarioAtual = JSON.parse(localStorage.getItem("usuarioLogado"));
       if (!usuarioAtual) {
         alert("Você precisa estar logado para publicar!");

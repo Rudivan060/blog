@@ -32,6 +32,7 @@ app.use(express.static(staticPath));
 
 console.log('Serving static files from:', staticPath);
 
+
 const checkAuth = (req, res, next) => {
     if (!req.session.user) {
         return res.status(401).json({ erro: "Usuário não autenticado" });
@@ -125,20 +126,22 @@ app.listen(PORT, () => {
 
 let mensagens = [];
 
-app.get('/api/mensagens', (req, res) => {
+app.get("/api/mensagens", (req, res) => {
   res.json(mensagens);
 });
 
-app.post('/api/mensagens', (req, res) => {
-  const nova = {
-    id: mensagens.length + 1,
-    usuario: req.body.usuario,
-    texto: req.body.texto,
-    data: new Date().toLocaleString(),
+app.post("/api/mensagens", (req, res) => {
+  const { usuario, texto } = req.body;
+  if (!usuario || !texto) {
+    return res.status(400).json({ erro: "Dados incompletos" });
+  }
+  const novaMensagem = {
+    usuario,
+    texto,
+    data: new Date().toLocaleString()
   };
-  mensagens.push(nova);
-  res.status(201).json(nova);
+  mensagens.push(novaMensagem);
+  res.status(201).json({ mensagem: "Mensagem publicada", novaMensagem });
 });
 
-app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
 
