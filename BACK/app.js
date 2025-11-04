@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 3000;
 
 const path = require('path');
 
-// Configuração do CORS
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
@@ -14,10 +13,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type']
 }));
 
-// Configuração para processar JSON
 app.use(express.json());
 
-// Configuração da sessão antes das rotas
 app.use(session({
     secret: "segredo-super-seguro",
     resave: false,
@@ -29,14 +26,11 @@ app.use(session({
     }
 }));
 
-// Configurar diretório de arquivos estáticos
-const staticPath = path.join(__dirname, '..', 'pagina');
+const staticPath = path.join(__dirname, '..', 'FRONT');
 app.use(express.static(staticPath));
 
-// Log para debug
-console.log('Serving static files from:', staticPath);
 
-// Sessão já configurada acima
+console.log('Serving static files from:', staticPath);
 
 const checkAuth = (req, res, next) => {
     if (!req.session.user) {
@@ -59,19 +53,20 @@ let usuarios = [
 let proximoID = 3;
 
 app.get('/', (req, res) => {
-    res.redirect('/FRONT/index.html');
+  res.sendFile(path.join(__dirname, '..', 'FRONT', 'index.html'));
 });
 
+
 app.post("/api/login", (req, res) => {
-    console.log('Requisição recebida:', req.body); // Log para debug
+    console.log('Requisição recebida:', req.body);
     const { text, senha } = req.body;
     if (!text || !senha) {
-        console.log('Dados inválidos:', { text, senha }); // Log para debug
+        console.log('Dados inválidos:', { text, senha }); 
         return res.status(400).json({ erro: 'Login e senha são obrigatórios' });
     }
 
     const user = usuarios.find(u => u.text === text && u.senha === senha);
-    console.log('Usuário encontrado:', user ? 'sim' : 'não'); // Log para debug
+    console.log('Usuário encontrado:', user ? 'sim' : 'não'); 
 
     if (!user) {
         return res.status(401).json({ erro: "Usuário ou senha incorretos" });
@@ -81,52 +76,13 @@ app.post("/api/login", (req, res) => {
     user.sessionId = req.sessionID;
     req.session.user = userSemSenha;
     
-    console.log('Login bem-sucedido para:', userSemSenha); // Log para debug
+    console.log('Login bem-sucedido para:', userSemSenha); 
     res.json({ 
         mensagem: "Login realizado com sucesso",
         usuario: userSemSenha
     });
 });
 
-app.post('/admin/derrubar/:id', checkAdmin, (req, res) => {
-    const { id } = req.params;
-    const usuario = usuarios.find(u => u.id == id);
-    if (!usuario || !usuario.sessionId) {
-        return res.status(404).json({ erro: 'Sessão do usuário não encontrada' });
-    }
-
-    req.sessionStore.destroy(usuario.sessionId, (err) => {
-        if (err) return res.status(500).json({ erro: 'Erro ao derrubar sessão' });
-        delete usuario.sessionId;
-        res.json({ mensagem: 'Sessão derrubada com sucesso' });
-    });
-});
-
-app.post('/admin/derrubar-todas', checkAdmin, (req, res) => {
-    const ids = usuarios.map(u => u.sessionId).filter(Boolean);
-    let erro = null;
-    let pending = ids.length;
-    if (pending === 0) return res.json({ mensagem: 'Nenhuma sessão ativa encontrada' });
-
-    ids.forEach(sid => {
-        req.sessionStore.destroy(sid, (err) => {
-            if (err) erro = err;
-            pending -= 1;
-            if (pending === 0) {
-                // remove sessionId de todos os usuários
-                usuarios.forEach(u => delete u.sessionId);
-                if (erro) return res.status(500).json({ erro: 'Erro ao derrubar algumas sessões' });
-                res.json({ mensagem: 'Todas as sessões foram derrubadas' });
-            }
-        });
-    });
-});
-
-app.post("/logout", (req, res) => {
-    req.session.destroy(() => {
-        res.json({ mensagem: "Logout realizado com sucesso" });
-    });
-});
 
 app.get('/usuarios', checkAuth, (req, res) => {
     if (req.session.user.papel !== 'admin') {
@@ -166,3 +122,23 @@ app.put('/admin/usuarios/:id/papel', checkAdmin, (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+let mensagens = [];
+
+app.get('/api/mensagens', (req, res) => {
+  res.json(mensagens);
+});
+
+app.post('/api/mensagens', (req, res) => {
+  const nova = {
+    id: mensagens.length + 1,
+    usuario: req.body.usuario,
+    texto: req.body.texto,
+    data: new Date().toLocaleString(),
+  };
+  mensagens.push(nova);
+  res.status(201).json(nova);
+});
+
+app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+

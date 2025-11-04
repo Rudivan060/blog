@@ -1,9 +1,15 @@
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const text = document.getElementById("username").value;
-  const senha = document.getElementById("password").value;
+  const text = document.getElementById("username").value.trim();
+  const senha = document.getElementById("password").value.trim();
   const errorMsg = document.getElementById("errorMsg");
+
+  if (!text || !senha) {
+    errorMsg.style.color = "red";
+    errorMsg.textContent = "Preencha todos os campos.";
+    return;
+  }
 
   try {
     const response = await fetch('/api/login', {
@@ -18,10 +24,11 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const data = await response.json();
 
     if (response.ok) {
+      localStorage.setItem("usuarioLogado", JSON.stringify({ username: text }));
       errorMsg.style.color = "green";
       errorMsg.textContent = "✅ Login realizado com sucesso!";
       setTimeout(() => {
-        window.location.href = "/FRONT/index.html";
+        window.location.href = "./index.html";
       }, 1000);
     } else {
       errorMsg.style.color = "red";

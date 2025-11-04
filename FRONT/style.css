@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +8,11 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
+  background: linear-gradient(to bottom, #fff8e1, #ffeaa7);
+  animation: fadeIn 1s ease-in-out;
 }
 
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,11 +20,21 @@ body {
   background: #daa520;
   color: #fff;
   padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: slideDown 0.6s ease-in-out;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .nav {
@@ -31,6 +45,13 @@ body {
 .nav a {
   color: #fff;
   text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav a:hover {
+  color: #333;
+  transform: scale(1.05);
 }
 
 .cell {
@@ -39,16 +60,25 @@ body {
   cursor: pointer;
 }
 
+/* Apresentação */
 .apresentacao {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
+  animation: fadeInUp 0.8s ease;
 }
 
 .apresentacao img {
   max-width: 400px;
   width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.apresentacao img:hover {
+  transform: scale(1.03);
 }
 
 .cards {
@@ -63,10 +93,29 @@ body {
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.8s ease;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Formulário */
 .formulario {
-  padding: 20px;
+  padding: 40px 20px;
+  background: #fffaf0;
+  border-top: 2px solid #daa520;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.formulario h2 {
+  color: #daa520;
+  margin-bottom: 20px;
 }
 
 .formulario form {
@@ -75,12 +124,18 @@ body {
   gap: 10px;
 }
 
-.formulario input,
 .formulario textarea,
 .formulario button {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 15px;
+  resize: none;
+}
+
+.formulario textarea:focus {
+  outline: 2px solid #daa520;
+  background: #fff8e1;
 }
 
 .formulario button {
@@ -88,23 +143,84 @@ body {
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
 }
 
+.formulario button:hover {
+  background: #c69310;
+  transform: scale(1.03);
+}
+
+/* Histórico */
 .historico {
-  padding: 20px;
+  padding: 30px 20px;
+  background: #fff;
+  animation: fadeInUp 0.8s ease;
+}
+
+.historico h2 {
+  color: #daa520;
+  margin-bottom: 10px;
 }
 
 .historico ul {
   list-style: none;
+  padding-left: 0;
 }
 
+.historico li {
+  background: #fff8dc;
+  border-left: 5px solid #daa520;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.4s ease;
+  transition: transform 0.2s;
+}
+
+.historico li:hover {
+  transform: scale(1.02);
+}
+
+/* Footer */
 .footer {
   text-align: center;
   background: #daa520;
   color: #fff;
-  padding: 10px;
+  padding: 15px;
+  font-size: 0.95rem;
+  animation: fadeIn 1.5s ease-in;
 }
 
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #333;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .apresentacao {
     flex-direction: column;
@@ -122,10 +238,12 @@ body {
     right: 0;
     width: 200px;
     padding: 10px;
+    border-radius: 0 0 0 10px;
   }
 
   .nav.show {
     display: flex;
+    animation: fadeIn 0.3s ease;
   }
 
   .cell {
