@@ -1,18 +1,17 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #ffccaa, #ffac75, #ff8431);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #fff8dc, #e8f3e1, #cfe6c1);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeBackground 5s ease-in-out infinite alternate;
+  animation: fadeBackground 6s ease-in-out infinite alternate;
 }
 
-/* Suave movimento no gradiente */
 @keyframes fadeBackground {
-  0% { background: linear-gradient(to bottom, #ffccaa, #ffac75, #ff8431); }
-  100% { background: linear-gradient(to bottom, #ffd5bb, #ffb480, #ff924a); }
+  0% { background: linear-gradient(to bottom, #fff8dc, #e8f3e1, #cfe6c1); }
+  100% { background: linear-gradient(to bottom, #fdf6d3, #e4f0da, #d2e8b8); }
 }
 
 .container {
@@ -29,14 +28,15 @@ body {
   border-radius: 15px;
   width: 100%;
   max-width: 350px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   animation: fadeIn 0.8s ease-in-out;
+  border: 3px solid #377923; 
 }
 
 .login-box h2 {
   margin-bottom: 20px;
-  color: #ff8431;
+  color: #377923; 
   font-weight: bold;
   letter-spacing: 1px;
 }
@@ -45,7 +45,7 @@ body {
 .input-group {
   display: flex;
   align-items: center;
-  background: #ff833179;
+  background: rgba(55, 121, 35, 0.15);
   margin-bottom: 15px;
   border-radius: 25px;
   padding: 10px 15px;
@@ -53,14 +53,14 @@ body {
 }
 
 .input-group:hover {
-  background: #ff8431a6;
+  background: rgba(55, 121, 35, 0.25);
   transform: scale(1.02);
 }
 
 .input-group .icon {
   margin-right: 10px;
   font-size: 18px;
-  color: #ff8431;
+  color: #377923;
 }
 
 .input-group input {
@@ -72,25 +72,26 @@ body {
   color: #333;
 }
 
-/* Botão */
+
 .btn {
   width: 100%;
   padding: 12px;
-  background: #ff8431;
+  background: #377923;
   border: none;
   border-radius: 25px;
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s;
 }
 
 .btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 132, 49, 0.4);
+  background: #377923;
+  box-shadow: 0 4px 12px rgba(55, 121, 35, 0.4);
 }
 
-/* Mensagens */
+
 .error {
   color: red;
   margin-top: 10px;
@@ -98,7 +99,7 @@ body {
   min-height: 20px;
 }
 
-/* Animações usadas pelo JS */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -124,7 +125,7 @@ button.pulse {
   animation: pulse 0.4s ease-in-out;
 }
 
-/* Responsividade */
+
 @media (max-width: 480px) {
   .login-box {
     width: 90%;
