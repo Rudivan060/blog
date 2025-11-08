@@ -1,0 +1,29 @@
+- Qual foi sua principal contribuição no trabalho?
+
+Fiz o front (html, css) e auxiliei brevemente em algumas "ideias" do backend
+
+- Quais partes do projeto você desenvolveu?
+
+css e html da página inicial 
+
+- Qual foi o trecho mais complicado do código? Explique o motivo.
+
+Acredito que foi a questão das rotas, o qual o Rudivan fez e eu tentei auxiliar
+
+- Qual foi sua maior dificuldade técnica e como resolveu?
+
+Da parte do front a maior dificuldade foi centralizar alguns cards e um pouco de responsividade
+
+- Você utilizou IA (como ChatGPT, Copilot, etc.) em alguma parte? Se sim,
+explique exatamente como (ex: para revisar código, gerar exemplos, esclarecer
+dúvidas, etc.).
+
+Sim, para auxiliar a ver onde eu estava errando para ajustar o alinhamento das coisas (e normalmente era algum erro bobo)
+
+- O que você aprendeu de novo com este trabalho?
+
+Que nem tudo é "tão" difícil, as vezes se acalmar e revisar o código é suficiente e necessário para verificar erros que passaram despercebidos
+
+- Se tivesse mais tempo, o que melhoraria no projeto?
+
+Inseriria uma forma de respostas nos posts do blog e deixaria mais bonito
