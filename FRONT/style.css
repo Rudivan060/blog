@@ -8,7 +8,7 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background: linear-gradient(to bottom, #fff8e1, #ffeaa7);
+  background: linear-gradient(to bottom, #fdfdfd, #c6d4ba);
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #daa520;
+  background: #377923;
   color: #fff;
   padding: 10px 20px;
   position: sticky;
@@ -69,8 +69,13 @@ body {
   animation: fadeInUp 0.8s ease;
 }
 
+.apresentacao .texto {
+  max-width: 500px;
+  margin-right: 30px;
+}
+
 .apresentacao img {
-  max-width: 400px;
+  max-width: 600px;
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
@@ -89,7 +94,7 @@ body {
 }
 
 .card {
-  background: #daa520;
+  background: #377923;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -98,6 +103,20 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: transform 0.3s, box-shadow 0.3s;
   animation: fadeInUp 0.8s ease;
+
+  height: 300px;      
+  display: flex;     
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  width: 250px;        
+  height: 150px;
+  object-fit: cover; 
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .card:hover {
@@ -105,16 +124,29 @@ body {
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;           
+  height: 100%;
+  width: 100%;
+}
+
+.card a:visited {
+  color: inherit;
+}
+
+
 /* Formulário */
 .formulario {
   padding: 40px 20px;
-  background: #fffaf0;
-  border-top: 2px solid #daa520;
+  background: #fdfdfd;
+  border-top: 2px solid #377923;
   animation: fadeIn 1s ease-in-out;
 }
 
 .formulario h2 {
-  color: #daa520;
+  color: #000000;
   margin-bottom: 20px;
 }
 
@@ -134,12 +166,12 @@ body {
 }
 
 .formulario textarea:focus {
-  outline: 2px solid #daa520;
-  background: #fff8e1;
+  outline: 2px solid #377923;
+  background: #fdfdfd;
 }
 
 .formulario button {
-  background: #daa520;
+  background: #377923;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -147,19 +179,19 @@ body {
 }
 
 .formulario button:hover {
-  background: #c69310;
+  background: #377923;
   transform: scale(1.03);
 }
 
 /* Histórico */
 .historico {
   padding: 30px 20px;
-  background: #fff;
+  background: #fdfdfd;
   animation: fadeInUp 0.8s ease;
 }
 
 .historico h2 {
-  color: #daa520;
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -169,8 +201,8 @@ body {
 }
 
 .historico li {
-  background: #fff8dc;
-  border-left: 5px solid #daa520;
+  background: #e3f5e7;
+  border-left: 5px solid #377923;
   padding: 10px;
   margin-bottom: 8px;
   border-radius: 5px;
@@ -186,7 +218,7 @@ body {
 /* Footer */
 .footer {
   text-align: center;
-  background: #daa520;
+  background: #377923;
   color: #fff;
   padding: 15px;
   font-size: 0.95rem;
@@ -232,7 +264,7 @@ body {
   .nav {
     display: none;
     flex-direction: column;
-    background: #daa520;
+    background: #c0cabb;
     position: absolute;
     top: 60px;
     right: 0;
